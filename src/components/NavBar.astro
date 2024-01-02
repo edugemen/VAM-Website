@@ -1,0 +1,79 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clasification">Clasification</a></li>
+        <li><a href="/lastgames">Last games</a></li>
+        <li><a href="/about">About</a></li>
+        <li><input id="theme-switch" type="checkbox" placeholder="Night" /></li>
+    </ul>
+</nav>
+
+<style>
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0106137b;
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+        font-weight: 500;
+        padding: 1em;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        gap: 1em;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        padding: 0.5em;
+        border-radius: 0.5em;
+        transition: background-color 0.3s ease;
+    }
+
+    li:hover {
+        background-color: #23262d;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<script>
+    //identify the toggle switch HTML element
+    const toggleSwitch: HTMLInputElement =
+        document.querySelector("#theme-switch");
+
+    //function that changes the theme, and sets a localStorage variable to track the theme between page loads
+    function switchTheme(e) {
+        if (e.target.checked) {
+            localStorage.setItem("theme", "dark");
+            document.documentElement.setAttribute("data-theme", "dark");
+            toggleSwitch.checked = true;
+        } else {
+            localStorage.setItem("theme", "light");
+            document.documentElement.setAttribute("data-theme", "light");
+            toggleSwitch.checked = false;
+        }
+    }
+
+    //listener for changing themes
+    toggleSwitch.addEventListener("change", switchTheme, false);
+
+    //pre-check the dark-theme checkbox if dark-theme is set
+    if (document.documentElement.getAttribute("data-theme") == "dark") {
+        toggleSwitch.checked = true;
+    }
+</script>

@@ -1,6 +1,6 @@
 ---
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -8,44 +8,95 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <slot />
+    </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap");
+
+    :root {
+        --aquamarine-50: #eafff8;
+        --aquamarine-100: #ccffed;
+        --aquamarine-200: #8cfbda;
+        --aquamarine-300: #60f5d2;
+        --aquamarine-400: #22e5be;
+        --aquamarine-500: #00cca8;
+        --aquamarine-600: #00a68a;
+        --aquamarine-700: #008573;
+        --aquamarine-800: #00695b;
+        --aquamarine-900: #00564d;
+        --aquamarine-950: #00312d;
+
+        --font-color: #000;
+        --link-color: #1c75b9;
+        --link-white-color: #fff;
+        --bg-color: #f5f5f5;
+        --bg-img: url("dia.jpg");
+    }
+
+    [data-theme="dark"] {
+        --font-color: #c1bfbd;
+        --link-color: #0a86da;
+        --link-white-color: #c1bfbd;
+        --bg-color: #04090f;
+        --bg-img: url("noche.jpg");
+    }
+
+    html {
+        font-family: "Noto Sans", sans-serif;
+        color: var(--font-color);
+        background: var(--bg-color);
+    }
+
+    body {
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        html {
+            background-position: 0 -600px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        html {
+            background-position: 0 -600px;
+        }
+    }
 </style>
+
+<script>
+    function detectColorScheme() {
+        var theme = "light"; //default to light
+
+        //local storage is used to override OS theme settings
+        if (localStorage.getItem("theme")) {
+            if (localStorage.getItem("theme") == "dark") {
+                var theme = "dark";
+            }
+        } else if (!window.matchMedia) {
+            //matchMedia method not supported
+            return false;
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            //OS theme setting detected as dark
+            var theme = "dark";
+        }
+
+        //dark theme preferred, set document with a `data-theme` attribute
+        if (theme == "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+        }
+    }
+    detectColorScheme();
+</script>

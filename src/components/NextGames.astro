@@ -1,0 +1,167 @@
+---
+import games from "./16442.json";
+
+const MY_ID = "1877";
+
+let partidos = games.filter(
+    (game) =>
+        game.e1_id && game.e2_id && (game.e1_id == MY_ID || game.e2_id == MY_ID)
+);
+
+partidos.sort((a, b) => {
+    let aDate = new Date(a.fecha_celebracion);
+    let bDate = new Date(b.fecha_celebracion);
+
+    return aDate < bDate ? 1 : -1;
+});
+
+const COLOR_TEAMS = {
+    "1857": "#ff000060",
+    "1877": "aquamarine",
+    "1795": "yellow",
+    "1852": "yellow",
+    "1790": "blue",
+    "1878": "purple",
+    "1805": "cyan",
+};
+---
+
+<div class="games-container">
+    {
+        partidos.map((game) => (
+            <div
+                class="game-card"
+                style={
+                    "background: linear-gradient(to right, " +
+                    COLOR_TEAMS[game.e1_id] +
+                    ", " +
+                    COLOR_TEAMS[game.e2_id] +
+                    ");"
+                }
+            >
+                <div class="inside-card">
+                    <div class="local-container">
+                        <img
+                            class="logo"
+                            src={
+                                "https://sportcapp.com:9006/" +
+                                game.colegio_local_imagen_large
+                            }
+                        />
+                        <p>{game.equipo_local_nombre}</p>
+                    </div>
+                    <div class="data-container">
+                        <p>
+                            {game.marcador_local} - {game.marcador_visitante}
+                        </p>
+                    </div>
+                    <div class="visitante-container">
+                        <p>{game.equipo_visitante_nombre}</p>
+                        <img
+                            class="logo"
+                            src={
+                                "https://sportcapp.com:9006/" +
+                                game.colegio_visitante_imagen_large
+                            }
+                        />
+                    </div>
+                    <div class="extra-data">
+                        <p>
+                            {new Date(
+                                game.fecha_celebracion
+                            ).toLocaleDateString()}
+                        </p>
+                        <a
+                            href={
+                                "https://www.google.es/maps/dir//" +
+                                game.sede_direccion.replaceAll(" ", "+")
+                            }
+                        >
+                            {game.sede_nombre}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<style>
+    .games-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .game-card {
+        position: relative;
+        border-radius: 10px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inside-card {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        height: calc(100% - 6px);
+        width: calc(100% - 6px);
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        color: black;
+    }
+
+    .extra-data {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        font-size: small;
+        justify-content: center;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .logo {
+        height: 50px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .data-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+
+    .local-container {
+        flex: 1;
+        height: 100px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .visitante-container {
+        flex: 1;
+        height: 100px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+</style>

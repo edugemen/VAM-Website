@@ -1,0 +1,42 @@
+.marcador-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+td {
+    position: relative;
+}
+
+.polygon {
+    position: absolute;
+    top: 0;
+    background-color: azure;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.team-container {
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+}
+
+.sets-container {
+    left: -20px;
+    clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
+}
+
+.game-container {
+    left: -20px;
+    clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
+}

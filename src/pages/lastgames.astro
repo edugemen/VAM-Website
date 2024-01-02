@@ -1,0 +1,36 @@
+---
+import NavBar from "../components/NavBar.astro";
+import NextGames from "../components/NextGames.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Last games">
+    <NavBar />
+    <main class="container">
+        <section id="table-container">
+            <NextGames />
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    #table-container {
+        width: 40%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            width: 90%;
+        }
+    }
+</style>

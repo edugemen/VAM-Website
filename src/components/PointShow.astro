@@ -1,0 +1,43 @@
+---
+const { team, games } = Astro.props;
+
+let parsedGames = games.map((game) => {
+    let isLocal = game.e1_id == team;
+
+    if (game.estado == 1) {
+        if (isLocal) {
+            return game.marcador_local > game.marcador_visitante ? "W" : "L";
+        } else {
+            return game.marcador_local < game.marcador_visitante ? "W" : "L";
+        }
+    } else {
+        return "N";
+    }
+});
+---
+
+<div class="points">
+    {parsedGames.map((game) => <div class={"point " + game}>&nbsp;</div>)}
+</div>
+
+<style>
+    .points {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+    .point {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+    .W {
+        background-color: green;
+    }
+    .L {
+        background-color: red;
+    }
+    .N {
+        background-color: gray;
+    }
+</style>
