@@ -4,6 +4,7 @@ import Card from "../components/Card.astro";
 import InstagramFeed from "../components/InstagramFeed";
 import NavBar from "../components/NavBar.astro";
 import Marcador from "../components/Marcador";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -13,15 +14,21 @@ import Marcador from "../components/Marcador";
     </section>
     <main class="page-container">
         <section id="stream-container">
-            <h2>Stream</h2>
-            <Marcador client:load />
+            <div class="stream-title">
+                <h2>Resultado del partido en directo</h2>
+                <Marcador client:load />
+            </div>
             <iframe
+                id="stream-iframe"
                 src="https://player.twitch.tv/?channel=vamcerrodelviento&parent=localhost"
                 allowfullscreen="true"
                 height="378"
                 width="620"></iframe>
         </section>
     </main>
+    <section class="footer">
+        <Footer />
+    </section>
 </Layout>
 
 <style>
@@ -32,8 +39,6 @@ import Marcador from "../components/Marcador";
         align-items: center;
         width: 80%;
         margin: auto;
-
-        background-color: aquamarine;
     }
 
     #portada {
@@ -57,11 +62,27 @@ import Marcador from "../components/Marcador";
     #stream-container {
         width: 100%;
         height: 500px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .stream-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 300px;
+        margin: 0 auto;
+        margin-bottom: 40px;
     }
 
     iframe {
         border: 0;
         border-radius: 10px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        margin: auto;
     }
 </style>

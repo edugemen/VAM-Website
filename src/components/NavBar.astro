@@ -4,7 +4,7 @@
         <li><a href="/clasification">Clasification</a></li>
         <li><a href="/lastgames">Last games</a></li>
         <li><a href="/about">About</a></li>
-        <li><input id="theme-switch" type="checkbox" placeholder="Night" /></li>
+        <img class="sunmoon" src="/moon.png" alt="moon" />
     </ul>
 </nav>
 
@@ -49,31 +49,37 @@
         text-decoration: none;
         color: white;
     }
+
+    .sunmoon {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
 </style>
 
 <script>
-    //identify the toggle switch HTML element
-    const toggleSwitch: HTMLInputElement =
-        document.querySelector("#theme-switch");
+    const sunmoon: HTMLImageElement = document.querySelector(".sunmoon");
 
-    //function that changes the theme, and sets a localStorage variable to track the theme between page loads
-    function switchTheme(e) {
-        if (e.target.checked) {
-            localStorage.setItem("theme", "dark");
-            document.documentElement.setAttribute("data-theme", "dark");
-            toggleSwitch.checked = true;
-        } else {
+    sunmoon.addEventListener("click", () => {
+        if (sunmoon.alt == "moon") {
+            sunmoon.src = "/sun.png";
+            sunmoon.alt = "sun";
             localStorage.setItem("theme", "light");
             document.documentElement.setAttribute("data-theme", "light");
-            toggleSwitch.checked = false;
+        } else {
+            sunmoon.src = "/moon.png";
+            sunmoon.alt = "moon";
+            localStorage.setItem("theme", "dark");
+            document.documentElement.setAttribute("data-theme", "dark");
         }
-    }
-
-    //listener for changing themes
-    toggleSwitch.addEventListener("change", switchTheme, false);
+    });
 
     //pre-check the dark-theme checkbox if dark-theme is set
     if (document.documentElement.getAttribute("data-theme") == "dark") {
-        toggleSwitch.checked = true;
+        sunmoon.src = "/moon.png";
+        sunmoon.alt = "moon";
+    } else {
+        sunmoon.src = "/sun.png";
+        sunmoon.alt = "sun";
     }
 </script>
