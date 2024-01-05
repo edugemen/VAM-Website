@@ -1,10 +1,24 @@
+---
+//Get viewport
+import IconMenu from "../icons/Icons.js";
+---
+
 <nav>
     <ul>
+        <div class="hide">
+            <li><a href="/">Home</a></li>
+            <li><a href="/clasification">Clasificación</a></li>
+            <li><a href="/lastgames">Últimos partidos</a></li>
+            <img class="sunmoon" src="/moon.png" alt="moon" />
+        </div>
+        <img class="icon" src="/menu.svg" alt="menu" />
+    </ul>
+    <ul class="popup">
         <li><a href="/">Home</a></li>
-        <li><a href="/clasification">Clasification</a></li>
-        <li><a href="/lastgames">Last games</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="/clasification">Clasificación</a></li>
+        <li><a href="/lastgames">Últimos partidos</a></li>
         <img class="sunmoon" src="/moon.png" alt="moon" />
+        <img class="icon" src="/menu.svg" alt="menu" />
     </ul>
 </nav>
 
@@ -50,15 +64,40 @@
         color: white;
     }
 
+    .popup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .sunmoon {
         width: 30px;
         height: 30px;
         cursor: pointer;
     }
+
+    .icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .hide {
+            display: none;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .icon {
+            display: none;
+        }
+    }
 </style>
 
 <script>
     const sunmoon: HTMLImageElement = document.querySelector(".sunmoon");
+    const icon: HTMLImageElement = document.querySelector(".icon");
 
     sunmoon.addEventListener("click", () => {
         if (sunmoon.alt == "moon") {
@@ -66,11 +105,14 @@
             sunmoon.alt = "sun";
             localStorage.setItem("theme", "light");
             document.documentElement.setAttribute("data-theme", "light");
+            icon.setAttribute("style", "filter: invert(1)");
         } else {
             sunmoon.src = "/moon.png";
             sunmoon.alt = "moon";
             localStorage.setItem("theme", "dark");
             document.documentElement.setAttribute("data-theme", "dark");
+            //set icon color white
+            icon.setAttribute("style", "filter: invert(1)");
         }
     });
 
@@ -78,6 +120,7 @@
     if (document.documentElement.getAttribute("data-theme") == "dark") {
         sunmoon.src = "/moon.png";
         sunmoon.alt = "moon";
+        icon.setAttribute("style", "filter: invert(1)");
     } else {
         sunmoon.src = "/sun.png";
         sunmoon.alt = "sun";

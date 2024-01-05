@@ -5,6 +5,7 @@ import InstagramFeed from "../components/InstagramFeed";
 import NavBar from "../components/NavBar.astro";
 import Marcador from "../components/Marcador";
 import Footer from "../components/Footer.astro";
+import type { load } from "cheerio";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -26,6 +27,9 @@ import Footer from "../components/Footer.astro";
                 width="620"></iframe>
         </section>
     </main>
+    <section class="ig-container">
+        <InstagramFeed client:load />
+    </section>
     <section class="footer">
         <Footer />
     </section>
@@ -56,7 +60,7 @@ import Footer from "../components/Footer.astro";
     }
 
     #logo-vam {
-        width: 400px;
+        max-width: 300px;
     }
 
     #stream-container {

@@ -1,0 +1,70 @@
+---
+const { id } = Astro.params;
+
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Navbar2 from "../../components/Navbar";
+import Footer from "../../components/Footer.astro";
+
+const API_KEY = import.meta.env.PUBLIC_INSTAGRAM_KEY;
+
+let url = `https://graph.instagram.com/${id}?fields=id,media_type,media_url,caption,timestamp,children{media_url,thumbnail_url}&access_token=${API_KEY}`;
+let data = await fetch(url).then((res) => res.json());
+---
+
+<Layout title="Post">
+    <Navbar2 client:load />
+    <main class="post-container">
+        <img class="post-img" src={data.media_url} alt="post" />
+        <div class="post-caption-container">
+            {
+                data.caption
+                    .split("\n")
+                    .filter((p) => p !== "")
+                    .map((p) => <p class="post-caption">{p}</p>)
+            }
+        </div>
+        {
+            data.children.data.map((child) => (
+                <img class="post-img" src={child.media_url} alt="post" />
+            ))
+        }
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    .post-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        margin: auto;
+        margin-top: 100px;
+    }
+
+    .post-img {
+        border-radius: 10px;
+        width: 90%;
+        aspect-ratio: 2;
+        object-fit: cover;
+        margin: 5px 0;
+    }
+
+    .post-caption-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 80%;
+        padding: 20px;
+        margin: 20px auto;
+        border-right: 3px solid var(--secondary-color);
+        border-left: 3px solid var(--secondary-color);
+    }
+
+    .post-caption {
+        text-align: start;
+        font-size: 1.3rem;
+    }
+</style>

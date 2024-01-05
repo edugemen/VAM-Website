@@ -1,26 +1,52 @@
 import React, { useEffect } from "react";
+import "./InstagramFeed.css";
 
 const API_KEY = import.meta.env.PUBLIC_INSTAGRAM_KEY;
 const VAM_ID = import.meta.env.PUBLIC_VAM_ID;
 
 function InstagramFeed(props) {
-    async function fetchInstagram(account_id: string) {
+    const [feed, setFeed] = React.useState([]);
+
+    async function fetchInstagram() {
         console.log("AAAA", API_KEY, VAM_ID);
 
         let res = await fetch(
-            `https://graph.facebook.com/${account_id}/media?fields=media_url&access_token=${API_KEY}`
+            `https://graph.instagram.com/me/media?fields=id,media_type,media_url,timestamp,children{media_url,thumbnail_url}&limit=20&access_token=${API_KEY}`
         );
 
         let data = await res.json();
+
+        let filteredData = data.data.filter((d) => d.media_type !== "VIDEO");
+
+        setFeed(filteredData);
 
         console.log(data);
     }
 
     useEffect(() => {
-        fetchInstagram(VAM_ID);
+        fetchInstagram();
     }, []);
 
-    return <div></div>;
+    if (feed) {
+        return (
+            <div className="ig-container">
+                <h2>Últimas publicaciones</h2>
+                <div className="ig-feed">
+                    {feed.map((media) => (
+                        <div
+                            className="ig-card"
+                            key={media.id}
+                            onClick={() => window.open("posts/" + media.id)}
+                        >
+                            <img className="ig-photo" src={media.media_url} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    } else {
+        return <p>Loading...</p>;
+    }
 }
 
 export default InstagramFeed;
