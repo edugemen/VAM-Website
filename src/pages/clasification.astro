@@ -1,17 +1,15 @@
 ---
 import ClasiTable from "../components/ClasiTable.astro";
-import NavBar from "../components/NavBar.astro";
-import NextGames from "../components/NextGames.astro";
+import Footer from "../components/Footer.astro";
+import NavBar from "../components/Navbar";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Clasification">
-    <NavBar />
+<Layout title="Clasificación">
+    <NavBar client:load />
     <main class="container">
         <section id="table-container">
             <ClasiTable />
-
-            <NextGames />
         </section>
     </main>
 </Layout>
@@ -23,17 +21,17 @@ import Layout from "../layouts/Layout.astro";
         justify-content: center;
         align-items: center;
         width: 100%;
-        margin-top: 100px;
+        margin: 100px auto 50px;
     }
 
     #table-container {
-        width: 40%;
+        width: 90%;
         margin: auto;
     }
 
-    @media (max-width: 768px) {
-        .container {
-            width: 90%;
+    @media (min-width: 768px) {
+        #table-container {
+            width: 60%;
         }
     }
 </style>

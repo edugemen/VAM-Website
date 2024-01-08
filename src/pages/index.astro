@@ -2,14 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import InstagramFeed from "../components/InstagramFeed";
-import NavBar from "../components/NavBar.astro";
+import NavBar from "../components/Navbar";
 import Marcador from "../components/Marcador";
 import Footer from "../components/Footer.astro";
 import type { load } from "cheerio";
 ---
 
-<Layout title="Welcome to Astro.">
-    <NavBar />
+<Layout title="VAM">
+    <NavBar client:load />
     <section id="portada">
         <img id="logo-vam" src="/LOGO_CIRCULAR.webp" alt="logo vam" />
     </section>

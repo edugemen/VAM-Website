@@ -1,5 +1,6 @@
 .ig-container {
     display: flex;
+    margin: 70px auto 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -13,13 +14,13 @@
     gap: 5px;
     width: 100%;
     flex-wrap: wrap;
-    column-count: 5;
     margin: auto;
     width: 80%;
 }
 
 .ig-card {
     cursor: pointer;
+    flex: 1 1 250px;
 }
 
 .ig-card:hover {
@@ -27,8 +28,8 @@
 }
 
 .ig-photo {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    aspect-ratio: 1;
     border-radius: 10px;
     object-fit: cover;
 }

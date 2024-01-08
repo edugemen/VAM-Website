@@ -1,5 +1,7 @@
 ---
-import games from "./16442.json";
+let games = await (
+    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1644")
+).json();
 
 const MY_ID = "1877";
 
@@ -42,23 +44,25 @@ const COLOR_TEAMS = {
                 <div class="inside-card">
                     <div class="local-container">
                         <img
-                            class="logo"
+                            class="team_logo"
                             src={
                                 "https://sportcapp.com:9006/" +
                                 game.colegio_local_imagen_large
                             }
                         />
-                        <p>{game.equipo_local_nombre}</p>
+                        <p class="team_name left">{game.equipo_local_nombre}</p>
                     </div>
                     <div class="data-container">
-                        <p>
+                        <p class="score">
                             {game.marcador_local} - {game.marcador_visitante}
                         </p>
                     </div>
                     <div class="visitante-container">
-                        <p>{game.equipo_visitante_nombre}</p>
+                        <p class="team_name right">
+                            {game.equipo_visitante_nombre}
+                        </p>
                         <img
-                            class="logo"
+                            class="team_logo"
                             src={
                                 "https://sportcapp.com:9006/" +
                                 game.colegio_visitante_imagen_large
@@ -97,11 +101,12 @@ const COLOR_TEAMS = {
     .game-card {
         position: relative;
         border-radius: 10px;
-        height: 100px;
+        height: 150px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        z-index: -2;
     }
 
     .inside-card {
@@ -113,9 +118,10 @@ const COLOR_TEAMS = {
         width: calc(100% - 6px);
         align-items: center;
         justify-content: center;
-        background-color: #f0f0f0;
+        background-color: var(--primary-color);
         border-radius: 8px;
         color: black;
+        z-index: -1;
     }
 
     .extra-data {
@@ -131,13 +137,40 @@ const COLOR_TEAMS = {
         p {
             margin: 0;
             padding: 0;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+
+        a {
+            margin: 0;
+            padding: 0;
+            font-size: 0.6rem;
+            font-weight: bold;
         }
     }
 
-    .logo {
-        height: 50px;
+    .team_logo {
+        height: 60px;
         aspect-ratio: 1;
         object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .team_name {
+        color: var(--font-color);
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 0 10px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .score {
+        color: var(--font-color);
+        font-size: 1.5rem;
+        font-weight: bold;
+        background-color: var(--secondary-color);
+        padding: 10px;
         border-radius: 10px;
     }
 
@@ -153,7 +186,8 @@ const COLOR_TEAMS = {
         flex: 1;
         height: 100px;
         display: flex;
-        justify-content: start;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 
@@ -161,7 +195,35 @@ const COLOR_TEAMS = {
         flex: 1;
         height: 100px;
         display: flex;
-        justify-content: end;
+        flex-direction: column-reverse;
+        justify-content: center;
         align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        .local-container {
+            flex-direction: row;
+            justify-content: start;
+            padding: 0 10px;
+        }
+
+        .visitante-container {
+            flex-direction: row;
+            justify-content: end;
+            padding: 0 10px;
+        }
+
+        .game-card {
+            height: 100px;
+        }
+
+        .team_logo {
+            height: 80px;
+        }
+
+        .team_name {
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
     }
 </style>

@@ -15,7 +15,6 @@ function Marcador(props) {
 
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            console.log("Data", data);
             //Wait 3 secons idle to avoid flickering
             //setTimeout(() => {
             let partido = new Partido(
@@ -37,7 +36,6 @@ function Marcador(props) {
 
         ws.onclose = () => {
             console.log("Disconnected from websocket");
-            //setClosedConnection(true);
         };
     };
 

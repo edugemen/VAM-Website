@@ -6,7 +6,8 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0106137b;
+    /* background-color: #0106137b; */
+    background-color: var(--nav-bg-color);
     color: white;
     font-size: 20px;
     line-height: 1.6;
@@ -31,24 +32,24 @@ li {
 }
 
 li:hover {
-    background-color: #23262d;
+    background-color: var(--primary-color);
 }
 
 .space-between {
     justify-content: space-between;
     width: 100%;
-    margin: 0 1em;
+    margin: 0 0 0 1em;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: var(--font-color);
 }
 
 .one {
-    flex: 1;
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    align-items: center;
 }
 
 .two {
@@ -64,9 +65,12 @@ a {
     width: 100%;
     background-color: var(--secondary-color);
     display: flex;
+    gap: 10px;
+    padding: 10px 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 }
 
 .close {
@@ -84,4 +88,9 @@ a {
     height: 30px;
     cursor: pointer;
     filter: invert(1);
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
 }

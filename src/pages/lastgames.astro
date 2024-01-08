@@ -1,11 +1,12 @@
 ---
-import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import NavBar from "../components/Navbar";
 import NextGames from "../components/NextGames.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Last games">
-    <NavBar />
+<Layout title="Últimos partidos">
+    <NavBar client:load />
     <main class="container">
         <section id="table-container">
             <NextGames />
@@ -19,18 +20,18 @@ import Layout from "../layouts/Layout.astro";
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        margin-top: 100px;
+        width: 90%;
+        margin: 100px auto 50px;
     }
 
     #table-container {
-        width: 40%;
+        width: 100%;
         margin: auto;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 1300px) {
         .container {
-            width: 90%;
+            width: 60%;
         }
     }
 </style>
