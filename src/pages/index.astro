@@ -1,11 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import InstagramFeed from "../components/InstagramFeed";
 import NavBar from "../components/Navbar";
 import Marcador from "../components/Marcador";
 import Footer from "../components/Footer.astro";
-import type { load } from "cheerio";
 ---
 
 <Layout title="VAM">
@@ -21,7 +19,7 @@ import type { load } from "cheerio";
             </div>
             <iframe
                 id="stream-iframe"
-                src="https://player.twitch.tv/?channel=vamcerrodelviento&parent=localhost"
+                src="https://player.twitch.tv/?channel=vamcerrodelviento&parent=vamcv.es"
                 allowfullscreen="true"
                 height="378"
                 width="620"></iframe>

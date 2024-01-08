@@ -25,12 +25,12 @@ let parsedDate = fecha.toLocaleDateString("es-ES");
             {
                 data.caption
                     .split("\n")
-                    .filter((p) => p !== "")
-                    .map((p) => <p class="post-caption">{p}</p>)
+                    .filter((p: string) => p !== "")
+                    .map((p: string) => <p class="post-caption">{p}</p>)
             }
         </div>
         {
-            data.children.data.map((child) => (
+            data.children.data.map((child: any) => (
                 <img class="post-img" src={child.media_url} alt="post" />
             ))
         }
