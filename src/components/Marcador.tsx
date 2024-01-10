@@ -14,6 +14,7 @@ function Marcador(props) {
         };
 
         ws.onmessage = (event) => {
+            console.log("DATA:", event.data);
             const data = JSON.parse(event.data);
             //Wait 3 secons idle to avoid flickering
             //setTimeout(() => {
