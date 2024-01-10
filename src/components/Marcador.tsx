@@ -15,7 +15,9 @@ function Marcador(props) {
 
         ws.onmessage = (event) => {
             console.log("DATA:", event.data);
-            const data = event.data;
+            const data = JSON.parse(event.data);
+            console.log("DATA:", data);
+            console.log("DATA:", data.names[0]);
             //Wait 3 secons idle to avoid flickering
             //setTimeout(() => {
             let partido = new Partido(
