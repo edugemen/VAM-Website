@@ -6,7 +6,7 @@ function Marcador(props) {
     const [partido, setPartido] = React.useState<Partido>(null);
 
     const loadWebsocket = () => {
-        const ws = new WebSocket("ws://129.151.233.192:3000");
+        const ws = new WebSocket("wss://eduflix.pro");
 
         ws.onopen = () => {
             console.log("Connected to websocket");
