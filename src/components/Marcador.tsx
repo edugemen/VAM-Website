@@ -29,8 +29,8 @@ function Marcador(props) {
                 data.sets[1],
                 data.points[0],
                 data.points[1],
-                data.pointsOrder,
-                getServe(data.pointsOrder)
+                data.pointsOrder
+                //getServe(data.pointsOrder)
             );
 
             console.log("Partido:", partido);
