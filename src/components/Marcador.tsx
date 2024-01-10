@@ -15,7 +15,7 @@ function Marcador(props) {
 
         ws.onmessage = (event) => {
             console.log("DATA:", event.data);
-            const data = JSON.parse(event.data);
+            const data = event.data;
             //Wait 3 secons idle to avoid flickering
             //setTimeout(() => {
             let partido = new Partido(
@@ -30,6 +30,8 @@ function Marcador(props) {
                 data.pointsOrder,
                 getServe(data.pointsOrder)
             );
+
+            console.log("Partido:", partido);
 
             setPartido(partido);
             //}, 3000);
