@@ -5,9 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer.astro";
 
-const API_KEY = import.meta.env.PUBLIC_INSTAGRAM_KEY;
-
-let url = `https://graph.instagram.com/${id}?fields=id,media_type,media_url,caption,timestamp,children{media_url,thumbnail_url}&access_token=${API_KEY}`;
+let url = `https://eduflix.pro/ig?id=${id}`;
 let data = await fetch(url).then((res) => res.json());
 
 let fecha = new Date(data.timestamp);
@@ -17,7 +15,11 @@ let parsedDate = fecha.toLocaleDateString("es-ES");
 <Layout title={"Post " + parsedDate}>
     <Navbar client:load />
     <main class="post-container">
-        <img class="post-img" src={data.media_url} alt="post" />
+        <img
+            class="post-img"
+            src={"https://eduflix.pro/" + data.children[0].media_url}
+            alt="post"
+        />
         <div class="post-img-caption">
             <p>{parsedDate}</p>
         </div>
@@ -30,8 +32,12 @@ let parsedDate = fecha.toLocaleDateString("es-ES");
             }
         </div>
         {
-            data.children.data.map((child: any) => (
-                <img class="post-img" src={child.media_url} alt="post" />
+            data.children.map((child: any) => (
+                <img
+                    class="post-img"
+                    src={"https://eduflix.pro/" + child.media_url}
+                    alt="post"
+                />
             ))
         }
     </main>

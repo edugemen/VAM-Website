@@ -1,21 +1,15 @@
 import React, { useEffect } from "react";
 import "./InstagramFeed.css";
 
-const API_KEY = import.meta.env.PUBLIC_INSTAGRAM_KEY;
-
 function InstagramFeed(props) {
     const [feed, setFeed] = React.useState([]);
 
     async function fetchInstagram() {
-        let res = await fetch(
-            `https://graph.instagram.com/me/media?fields=id,media_type,media_url,timestamp,children{media_url,thumbnail_url}&limit=20&access_token=${API_KEY}`
-        );
+        let res = await fetch("https://eduflix.pro/ig-collection");
 
         let data = await res.json();
 
-        let filteredData = data.data.filter((d) => d.media_type !== "VIDEO");
-
-        setFeed(filteredData);
+        setFeed(data);
     }
 
     useEffect(() => {
@@ -30,10 +24,22 @@ function InstagramFeed(props) {
                     {feed.map((media) => (
                         <div
                             className="ig-card"
-                            key={media.id}
-                            onClick={() => window.open("posts/" + media.id)}
+                            key={media._id}
+                            onClick={() => window.open("posts/" + media._id)}
                         >
-                            <img className="ig-photo" src={media.media_url} />
+                            <img
+                                className="ig-photo"
+                                alt={
+                                    "post " +
+                                    new Date(
+                                        media.timestamp
+                                    ).toLocaleDateString("es-ES")
+                                }
+                                loading="lazy"
+                                src={
+                                    "https://eduflix.pro/" + media.thumbnail_url
+                                }
+                            />
                         </div>
                     ))}
                 </div>
