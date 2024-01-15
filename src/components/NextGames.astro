@@ -1,6 +1,6 @@
 ---
 let games = await (
-    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1644")
+    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1666")
 ).json();
 
 const MY_ID = "1877";
@@ -14,7 +14,7 @@ partidos.sort((a, b) => {
     let aDate = new Date(a.fecha_celebracion);
     let bDate = new Date(b.fecha_celebracion);
 
-    return aDate < bDate ? 1 : -1;
+    return aDate > bDate ? 1 : -1;
 });
 
 const COLOR_TEAMS = {
@@ -25,6 +25,9 @@ const COLOR_TEAMS = {
     "1790": "blue",
     "1878": "purple",
     "1805": "cyan",
+    "1814": "lime",
+    "1887": "#ff000060",
+    "1773": "blue",
 };
 ---
 
@@ -106,7 +109,7 @@ const COLOR_TEAMS = {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: -2;
+        /* z-index: -2; */
     }
 
     .inside-card {
@@ -121,7 +124,7 @@ const COLOR_TEAMS = {
         background-color: var(--primary-color);
         border-radius: 8px;
         color: black;
-        z-index: -1;
+        /* z-index: -1; */
     }
 
     .extra-data {

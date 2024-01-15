@@ -12,6 +12,7 @@ nav {
     font-size: 20px;
     line-height: 1.6;
     font-weight: 500;
+    z-index: 1;
 }
 
 ul {
