@@ -7,19 +7,42 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="name" content="" />
+        <!-- Primary Meta Tags -->
+        <title>VAM</title>
+        <meta name="title" content="VAM" />
         <meta
             name="description"
             content="Página oficial de VAM Cerro del Viento"
         />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.vamcv.es/" />
+        <meta property="og:title" content="VAM" />
+        <meta
+            property="og:description"
+            content="Página oficial de VAM Cerro del Viento"
+        />
+        <meta property="og:image" content="meta.png" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.vamcv.es/" />
+        <meta property="twitter:title" content="VAM" />
+        <meta
+            property="twitter:description"
+            content="Página oficial de VAM Cerro del Viento"
+        />
+        <meta property="twitter:image" content="meta.png" />
+
+        <!-- Meta Tags Generated with https://metatags.io -->
         <meta name="author" content="github.com/edugemen" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="/logo.png" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
     </head>
     <body>
         <slot />
