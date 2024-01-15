@@ -1,12 +1,12 @@
 ---
 let clasificacion = await (
     await fetch(
-        "https://sportcapp.com:9006/open/api/clasificaciones/grupo/1666"
+        "https://sportcapp.com:9006/open/api/clasificaciones/grupo/1668"
     )
 ).json();
 
 let games = await (
-    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1666")
+    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1668")
 ).json();
 
 import PointShow from "./PointShow.astro";
