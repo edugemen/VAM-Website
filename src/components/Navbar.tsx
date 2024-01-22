@@ -76,7 +76,7 @@ function NavBar(props) {
                         <a href="/clasification">Clasificación</a>
                     </li>
                     <li>
-                        <a href="/lastgames">Últimos partidos</a>
+                        <a href="/lastgames">Partidos</a>
                     </li>
                     <img
                         className="sunmoon"
