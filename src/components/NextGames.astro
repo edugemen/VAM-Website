@@ -82,7 +82,9 @@ const COLOR_TEAMS = {
                         <a
                             href={
                                 "https://www.google.es/maps/dir//" +
-                                game.sede_direccion.replaceAll(" ", "+")
+                                game.sede_nombre
+                                // .replaceAll(" ", "+")
+                                // .replaceAll("/", "")
                             }
                         >
                             {game.sede_nombre}
