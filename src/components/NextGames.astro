@@ -30,6 +30,14 @@ const COLOR_TEAMS = {
     "1773": "blue",
     "1873": "#6092C4",
 };
+
+function formatDate(date) {
+    let d = new Date(date);
+    let hour = d.toTimeString().split(" ")[0].split(":");
+    let hour2 = hour[0] + ":" + hour[1];
+
+    return hour2 + " " + d.toLocaleDateString("es-ES");
+}
 ---
 
 <div class="games-container">
@@ -74,11 +82,7 @@ const COLOR_TEAMS = {
                         />
                     </div>
                     <div class="extra-data">
-                        <p>
-                            {new Date(
-                                game.fecha_celebracion
-                            ).toLocaleDateString()}
-                        </p>
+                        <p>{formatDate(game.fecha_celebracion)}</p>
                         <a
                             href={
                                 "https://www.google.es/maps/dir//" +
