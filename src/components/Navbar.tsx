@@ -53,7 +53,7 @@ function NavBar(props) {
                         <a href="/clasification">Clasificación</a>
                     </li>
                     <li>
-                        <a href="/lastgames">Últimos partidos</a>
+                        <a href="/games">Últimos partidos</a>
                     </li>
                     <li onClick={toggleDarkMode}>
                         <img
