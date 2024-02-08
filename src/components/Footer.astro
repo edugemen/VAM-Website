@@ -1,7 +1,10 @@
 <footer>
-    <div>
-        <p>© 2022 - {new Date().getFullYear()} VAM</p>
-    </div>
+    <p>© 2022 - {new Date().getFullYear()} VAM</p>
+    <p>
+        Desarrollado por <a target="_blank" href="https://github.com/edugemen"
+            >edugemen@gmail.com</a
+        >
+    </p>
 </footer>
 
 <style>
@@ -9,8 +12,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: row;
+        gap: 5px;
+        flex-wrap: wrap;
         width: 100%;
         padding: 20px 0;
         background-color: var(--secondary-color);
+    }
+
+    a {
+        color: var(--aquamarine-600);
     }
 </style>

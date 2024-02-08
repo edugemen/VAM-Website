@@ -50,10 +50,10 @@ function NavBar(props) {
                 </ul>
                 <ul className={`popup ${isOpen ? "" : "close"}`}>
                     <li>
-                        <a href="/clasification">Clasificación</a>
+                        <a href="/clasificacion">Clasificación</a>
                     </li>
                     <li>
-                        <a href="/games">Últimos partidos</a>
+                        <a href="/partidos">Últimos partidos</a>
                     </li>
                     <li onClick={toggleDarkMode}>
                         <img
@@ -73,10 +73,10 @@ function NavBar(props) {
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/clasification">Clasificación</a>
+                        <a href="/clasificacion">Clasificación</a>
                     </li>
                     <li>
-                        <a href="/games">Partidos</a>
+                        <a href="/partidos">Partidos</a>
                     </li>
                     <img
                         className="sunmoon"
