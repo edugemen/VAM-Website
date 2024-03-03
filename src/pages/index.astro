@@ -4,12 +4,14 @@ import InstagramFeed from "../components/InstagramFeed";
 import NavBar from "../components/Navbar";
 import Marcador from "../components/Marcador";
 import Footer from "../components/Footer.astro";
+import Volleyball from "../components/Volleyball.astro";
 ---
 
 <Layout title="VAM">
     <NavBar client:load />
     <section id="portada">
-        <img id="logo-vam" src="/LOGO_CIRCULAR.webp" alt="logo vam" />
+        <!-- <img id="logo-vam" src="/LOGO_CIRCULAR.webp" alt="logo vam" /> -->
+        <Volleyball />
     </section>
     <main class="page-container">
         <section id="stream-container">

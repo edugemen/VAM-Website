@@ -19,6 +19,7 @@ function NavBar(props) {
             localStorage.setItem("theme", "dark");
             document.documentElement.setAttribute("data-theme", "dark");
         }
+        window.dispatchEvent(new Event("storage"));
     }
 
     useEffect(() => {
