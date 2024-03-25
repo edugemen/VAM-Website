@@ -11,15 +11,23 @@ function NavBar(props) {
     }
 
     function toggleDarkMode() {
-        setIsDarkMode(!isDarkMode);
-        if (isDarkMode) {
-            localStorage.setItem("theme", "light");
-            document.documentElement.setAttribute("data-theme", "light");
+        // setIsDarkMode(!isDarkMode);
+        // if (isDarkMode) {
+        //     localStorage.setItem("theme", "light");
+        //     document.documentElement.setAttribute("data-theme", "light");
+        // } else {
+        //     localStorage.setItem("theme", "dark");
+        //     document.documentElement.setAttribute("data-theme", "dark");
+        // }
+        // window.dispatchEvent(new Event("storage"));
+        let theme = localStorage.getItem("theme") || "light";
+        if (theme === "light") {
+            theme = "dark";
         } else {
-            localStorage.setItem("theme", "dark");
-            document.documentElement.setAttribute("data-theme", "dark");
+            theme = "light";
         }
-        window.dispatchEvent(new Event("storage"));
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
     }
 
     useEffect(() => {

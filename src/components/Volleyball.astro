@@ -112,8 +112,6 @@
     glowMesh.scale.setScalar(1.01);
     volleyGroup.add(glowMesh);
 
-    console.log(localStorage.getItem("theme"));
-
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 
     if (localStorage.getItem("theme") == "light") {
