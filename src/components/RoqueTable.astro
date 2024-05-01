@@ -1,6 +1,8 @@
 ---
 //Get from local JSON
-import roquetas from "../data/roquetas.json";
+let roquetas = await fetch(
+    "https://raw.githubusercontent.com/edugemen/VAM-Website/main/src/data/roquetas.json?token=GHSAT0AAAAAACMRHIENPO5RNSTKGY7JUGKYZRSAN5A"
+).then((res) => res.json());
 
 const isVAM = (partido) => {
     return (
