@@ -6,6 +6,10 @@ let roquetas = await fetch(
     .then((res) => res.json())
     .catch((err) => console.log(err));
 
+const getImageURL = (slug) => {
+    return `https://raw.githubusercontent.com/edugemen/Static-DB/main/Roquetas/${slug}.webp`;
+};
+
 const isVAM = (partido) => {
     return (
         partido.e1 === "Los Pinguinos de VAMagascar" ||
@@ -14,7 +18,7 @@ const isVAM = (partido) => {
 };
 ---
 
-<article class="w-full p-2 md:w-1/3 m-auto">
+<article class="w-full p-2 md:w-1/2 m-auto">
     {
         roquetas["AFADE M"].partidos.map((partido) => {
             return (
@@ -28,19 +32,49 @@ const isVAM = (partido) => {
                     }}
                 >
                     <div class="h-full flex flex-row justify-between items-center flex-1">
-                        <p class="flex-1 text-xl font-semibold">{partido.e1}</p>
-                        <div class="flex flex-row flex-1 justify-center gap-2">
-                            <p class="text-3xl font-semibold">
+                        <div class="flex flex-row flex-[2] gap-2 items-center">
+                            <img
+                                src={getImageURL(partido.slug[0])}
+                                class="w-20 rounded-full"
+                            />
+                            <p class="text-xl font-semibold">{partido.e1}</p>
+                        </div>
+
+                        <div class="flex flex-row flex-1 justify-center items-center gap-2">
+                            <p
+                                class="text-5xl font-semibold"
+                                style={{
+                                    fontFamily: "Kode Mono",
+                                }}
+                            >
                                 {partido.resultado[0]}
                             </p>
-                            <p class="text-3xl font-semibold">-</p>
-                            <p class="text-3xl font-semibold">
+                            <p
+                                class="text-3xl font-semibold"
+                                style={{
+                                    fontFamily: "Kode Mono",
+                                }}
+                            >
+                                -
+                            </p>
+                            <p
+                                class="text-5xl font-semibold"
+                                style={{
+                                    fontFamily: "Kode Mono",
+                                }}
+                            >
                                 {partido.resultado[1]}
                             </p>
                         </div>
-                        <p class="flex-1 text-xl font-semibold text-right">
-                            {partido.e2}
-                        </p>
+                        <div class="flex flex-row flex-[2] gap-2 items-center justify-end">
+                            <p class="text-xl font-semibold text-right">
+                                {partido.e2}
+                            </p>
+                            <img
+                                src={getImageURL(partido.slug[1])}
+                                class="w-20 rounded-full"
+                            />
+                        </div>
                     </div>
                     <div class="flex flex-row justify-between mt-1">
                         <p>{partido.lugar}</p>
