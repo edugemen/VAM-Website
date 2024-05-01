@@ -5,13 +5,17 @@ import NavBar from "../components/Navbar";
 import Marcador from "../components/Marcador";
 import Footer from "../components/Footer.astro";
 import Volleyball from "../components/Volleyball.astro";
+import LandingLogo from "../components/LandingLogo.astro";
+import Logo from "../components/icons/Logo.astro";
 ---
 
 <Layout title="VAM">
     <NavBar client:load />
     <section id="portada">
-        <!-- <img id="logo-vam" src="/LOGO_CIRCULAR.webp" alt="logo vam" /> -->
-        <Volleyball />
+        <!-- <img id="logo-vam" src="/logo.webp" alt="logo vam" /> -->
+        <Logo size={300} color="var(--logo-color)" />
+        <!-- <Volleyball /> -->
+        <!-- <LandingLogo /> -->
     </section>
     <main class="page-container">
         <section id="stream-container">

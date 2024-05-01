@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+
+import LOGO_CIRCULAR from "./public/LOGO_CIRCULAR.webp";
+import Logo from "../icons/Logo.astro";
+---
+
+<section class="w-full h-screen flex flex-row justify-around items-center">
+    <article>
+        <h1 class="text-6xl font-bold">VAM Cerro del Viento</h1>
+        <p class="text-lg font-light">
+            La página web oficial del club favorito de tu club favorito
+        </p>
+    </article>
+    <article class="bg-gradient-logo p-10">
+        <Logo color="#121d1b" size={600} />
+    </article>
+</section>

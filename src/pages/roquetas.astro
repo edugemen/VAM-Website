@@ -1,0 +1,17 @@
+---
+import NavBar from "../components/Navbar";
+import RoqueTable from "../components/RoqueTable.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="VAM">
+    <NavBar client:load />
+    <section class="mt-16">
+        <p class="text-5xl text-center pb-4 pt-5 font-extrabold">
+            TORNEO ROQUETAS
+        </p>
+        <RoqueTable />
+    </section>
+    <Footer />
+</Layout>

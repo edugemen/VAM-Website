@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import PlayerCard from "../components/PlayerCard.astro";
+---
+
+<Layout title="Jugadores">
+    <Navbar client:load />
+    <main class="container">
+        <PlayerCard player={{ name: "Neo" }} />
+    </main>
+</Layout>
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 100vh;
+        margin: 100px auto 50px;
+    }
+</style>

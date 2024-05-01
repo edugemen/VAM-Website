@@ -1,6 +1,8 @@
 ---
+import TopBar from "../components/sections/TopBar.astro";
 import Meta from "./Meta.astro";
 import Theme from "./Theme.astro";
+import Noise from "../assets/Noise.astro";
 
 interface Props {
     title: string;
@@ -10,15 +12,32 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <Theme />
         <Meta />
     </head>
     <body>
+        <!-- <TopBar /> -->
         <slot />
+        <!-- <Noise /> -->
+
         <style is:global>
             @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap");
+
+            :root {
+                --aq: #4ab598;
+                --aq-light: #87b5a9;
+                --aq-dark: #1d473b;
+
+                --db: #041125;
+                --db-ligh: #0b2e62;
+
+                --white: #ffffff;
+
+                --primary-color: var(--aq);
+                --secondary-color: var(--db-ligh);
+            }
 
             :root {
                 --aquamarine-50-array: 0, 166, 138;
@@ -40,6 +59,7 @@ const { title } = Astro.props;
                 --primary-color: var(--aquamarine-600);
                 --secondary-color: var(--aquamarine-700);
                 --link-color: #1c75b9;
+                --logo-color: var(--aquamarine-950);
                 --link-white-color: #fff;
                 --bg-color: #f5f5f5;
                 --bg-img: url("dia.jpg");
@@ -51,6 +71,7 @@ const { title } = Astro.props;
                 --primary-color: var(--aquamarine-800);
                 --secondary-color: var(--aquamarine-950);
                 --link-color: #0a86da;
+                --logo-color: var(--aquamarine-500);
                 --link-white-color: #c1bfbd;
                 --bg-color: #04090f;
                 --bg-img: url("noche.jpg");

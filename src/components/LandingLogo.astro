@@ -1,0 +1,40 @@
+---
+
+---
+
+<!-- main Atropos container (required), add your custom class here -->
+<div class="atropos my-atropos">
+    <!-- scale container (required) -->
+    <div class="atropos-scale">
+        <!-- rotate container (required) -->
+        <div class="atropos-rotate">
+            <!-- inner container (required) -->
+            <div class="atropos-inner">
+                <img src="LOGO_CIRCULAR.webp" alt="logo" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .my-atropos {
+        width: 900px;
+        height: 900px;
+    }
+
+    img {
+        width: 300px;
+        height: 300px;
+    }
+</style>
+
+<script>
+    import "atropos/css";
+    import Atropos from "atropos";
+
+    // Initialize
+    const myAtropos = Atropos({
+        el: ".my-atropos",
+        // rest of parameters
+    });
+</script>

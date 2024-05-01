@@ -64,6 +64,9 @@ function NavBar(props) {
                     <li>
                         <a href="/partidos">Últimos partidos</a>
                     </li>
+                    <li>
+                        <a href="/roquetas">Roquetas</a>
+                    </li>
                     <li onClick={toggleDarkMode}>
                         <img
                             className="sunmoon"
@@ -86,6 +89,9 @@ function NavBar(props) {
                     </li>
                     <li>
                         <a href="/partidos">Partidos</a>
+                    </li>
+                    <li>
+                        <a href="/roquetas">Roquetas</a>
                     </li>
                     <img
                         className="sunmoon"
