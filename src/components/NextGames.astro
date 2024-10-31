@@ -1,243 +1,239 @@
 ---
 let games = await (
-    await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1668")
+  await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1740")
 ).json();
 
 const MY_ID = "1877";
 
 let partidos = games.filter(
-    (game) =>
-        game.e1_id && game.e2_id && (game.e1_id == MY_ID || game.e2_id == MY_ID)
+  (game) =>
+    game.e1_id && game.e2_id && (game.e1_id == MY_ID || game.e2_id == MY_ID)
 );
 
 partidos.sort((a, b) => {
-    let aDate = new Date(a.fecha_celebracion);
-    let bDate = new Date(b.fecha_celebracion);
+  let aDate = new Date(a.fecha_celebracion);
+  let bDate = new Date(b.fecha_celebracion);
 
-    return aDate > bDate ? 1 : -1;
+  return aDate > bDate ? 1 : -1;
 });
 
 const COLOR_TEAMS = {
-    "1857": "#ff000060",
-    "1877": "aquamarine",
-    "1795": "yellow",
-    "1852": "yellow",
-    "1790": "blue",
-    "1878": "purple",
-    "1805": "cyan",
-    "1814": "lime",
-    "1887": "#ff000060",
-    "1773": "blue",
-    "1873": "#6092C4",
+  "1857": "#ff000060",
+  "1877": "aquamarine",
+  "1795": "yellow",
+  "1852": "yellow",
+  "1790": "blue",
+  "1878": "purple",
+  "1805": "cyan",
+  "1814": "lime",
+  "1887": "#ff000060",
+  "1773": "blue",
+  "1873": "#6092C4",
 };
 
 function formatDate(date) {
-    let d = new Date(date);
-    let hour = d.toTimeString().split(" ")[0].split(":");
-    let hour2 = hour[0] + ":" + hour[1];
+  let d = new Date(date);
+  let hour = d.toTimeString().split(" ")[0].split(":");
+  let hour2 = hour[0] + ":" + hour[1];
 
-    return hour2 + " " + d.toLocaleDateString("es-ES");
+  return hour2 + " " + d.toLocaleDateString("es-ES");
 }
 ---
 
 <div class="games-container">
-    {
-        partidos.map((game) => (
-            <div
-                class="game-card"
-                style={
-                    "background: linear-gradient(to right, " +
-                    COLOR_TEAMS[game.e1_id] +
-                    ", " +
-                    COLOR_TEAMS[game.e2_id] +
-                    ");"
-                }
+  {
+    partidos.map((game) => (
+      <div
+        class="game-card"
+        style={
+          "background: linear-gradient(to right, " +
+          COLOR_TEAMS[game.e1_id] +
+          ", " +
+          COLOR_TEAMS[game.e2_id] +
+          ");"
+        }
+      >
+        <div class="inside-card">
+          <div class="local-container">
+            <img
+              class="team_logo"
+              src={
+                "https://sportcapp.com:9006/" + game.colegio_local_imagen_large
+              }
+            />
+            <p class="team_name left">{game.equipo_local_nombre}</p>
+          </div>
+          <div class="data-container">
+            <p class="score">
+              {game.marcador_local} - {game.marcador_visitante}
+            </p>
+          </div>
+          <div class="visitante-container">
+            <p class="team_name right">{game.equipo_visitante_nombre}</p>
+            <img
+              class="team_logo"
+              src={
+                "https://sportcapp.com:9006/" +
+                game.colegio_visitante_imagen_large
+              }
+            />
+          </div>
+          <div class="extra-data">
+            <p>{formatDate(game.fecha_celebracion)}</p>
+            <a
+              href={
+                "https://www.google.es/maps/dir//" + game.sede_nombre
+                // .replaceAll(" ", "+")
+                // .replaceAll("/", "")
+              }
             >
-                <div class="inside-card">
-                    <div class="local-container">
-                        <img
-                            class="team_logo"
-                            src={
-                                "https://sportcapp.com:9006/" +
-                                game.colegio_local_imagen_large
-                            }
-                        />
-                        <p class="team_name left">{game.equipo_local_nombre}</p>
-                    </div>
-                    <div class="data-container">
-                        <p class="score">
-                            {game.marcador_local} - {game.marcador_visitante}
-                        </p>
-                    </div>
-                    <div class="visitante-container">
-                        <p class="team_name right">
-                            {game.equipo_visitante_nombre}
-                        </p>
-                        <img
-                            class="team_logo"
-                            src={
-                                "https://sportcapp.com:9006/" +
-                                game.colegio_visitante_imagen_large
-                            }
-                        />
-                    </div>
-                    <div class="extra-data">
-                        <p>{formatDate(game.fecha_celebracion)}</p>
-                        <a
-                            href={
-                                "https://www.google.es/maps/dir//" +
-                                game.sede_nombre
-                                // .replaceAll(" ", "+")
-                                // .replaceAll("/", "")
-                            }
-                        >
-                            {game.sede_nombre}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        ))
-    }
+              {game.sede_nombre}
+            </a>
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </div>
 
 <style>
-    .games-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+  .games-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .game-card {
+    position: relative;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* z-index: -2; */
+  }
+
+  .inside-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    height: calc(100% - 6px);
+    width: calc(100% - 6px);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    color: black;
+    /* z-index: -1; */
+  }
+
+  .extra-data {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: small;
+    justify-content: center;
+
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 0.6rem;
+      font-weight: bold;
     }
 
-    .game-card {
-        position: relative;
-        border-radius: 10px;
-        height: 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* z-index: -2; */
+    a {
+      margin: 0;
+      padding: 0;
+      font-size: 0.6rem;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 60%;
+      text-overflow: ellipsis;
     }
+  }
 
-    .inside-card {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        height: calc(100% - 6px);
-        width: calc(100% - 6px);
-        align-items: center;
-        justify-content: center;
-        background-color: var(--primary-color);
-        border-radius: 8px;
-        color: black;
-        /* z-index: -1; */
-    }
+  .team_logo {
+    height: 60px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 10px;
+  }
 
-    .extra-data {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        font-size: small;
-        justify-content: center;
+  .team_name {
+    color: var(--font-color);
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0 10px;
+    padding: 0;
+    text-align: center;
+  }
 
-        p {
-            margin: 0;
-            padding: 0;
-            font-size: 0.6rem;
-            font-weight: bold;
-        }
+  .score {
+    color: var(--font-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 10px;
+  }
 
-        a {
-            margin: 0;
-            padding: 0;
-            font-size: 0.6rem;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            max-width: 60%;
-            text-overflow: ellipsis;
-        }
-    }
+  .data-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
 
-    .team_logo {
-        height: 60px;
-        aspect-ratio: 1;
-        object-fit: contain;
-        border-radius: 10px;
-    }
+  .local-container {
+    flex: 1;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .team_name {
-        color: var(--font-color);
-        font-weight: bold;
-        font-size: 1rem;
-        margin: 0 10px;
-        padding: 0;
-        text-align: center;
-    }
+  .visitante-container {
+    flex: 1;
+    height: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .score {
-        color: var(--font-color);
-        font-size: 1.5rem;
-        font-weight: bold;
-        background-color: var(--secondary-color);
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .data-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-    }
-
+  @media (min-width: 768px) {
     .local-container {
-        flex: 1;
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      flex-direction: row;
+      justify-content: start;
+      padding: 0 10px;
     }
 
     .visitante-container {
-        flex: 1;
-        height: 100px;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
+      flex-direction: row;
+      justify-content: end;
+      padding: 0 10px;
     }
 
-    @media (min-width: 768px) {
-        .local-container {
-            flex-direction: row;
-            justify-content: start;
-            padding: 0 10px;
-        }
-
-        .visitante-container {
-            flex-direction: row;
-            justify-content: end;
-            padding: 0 10px;
-        }
-
-        .game-card {
-            height: 100px;
-        }
-
-        .team_logo {
-            height: 80px;
-        }
-
-        .team_name {
-            font-size: 1.5rem;
-            margin: 0 10px;
-        }
+    .game-card {
+      height: 100px;
     }
+
+    .team_logo {
+      height: 80px;
+    }
+
+    .team_name {
+      font-size: 1.5rem;
+      margin: 0 10px;
+    }
+  }
 </style>
