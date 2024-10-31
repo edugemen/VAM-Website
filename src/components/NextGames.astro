@@ -3,7 +3,7 @@ let games = await (
   await fetch("https://sportcapp.com:9006/open/api/partidos/resultados/1740")
 ).json();
 
-const MY_ID = "1877";
+const MY_ID = "1942";
 
 let partidos = games.filter(
   (game) =>
@@ -18,17 +18,13 @@ partidos.sort((a, b) => {
 });
 
 const COLOR_TEAMS = {
-  "1857": "#ff000060",
-  "1877": "aquamarine",
-  "1795": "yellow",
-  "1852": "yellow",
-  "1790": "blue",
-  "1878": "purple",
-  "1805": "cyan",
-  "1814": "lime",
-  "1887": "#ff000060",
-  "1773": "blue",
-  "1873": "#6092C4",
+  "1942": "#ff000060",
+  "1931": "green", // "Cartama"
+  "1947": "yellow", // "Just Voley A"
+  "1949": "yellow", // "Just Voley C"
+  "2000": "purple", // "Fundación Victoria B"
+  "2003": "coral", // "CVAG Fahala"
+  "2020": "red", // "Puerta Oscura B"
 };
 
 function formatDate(date) {
