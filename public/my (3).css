@@ -1,0 +1,28 @@
+body {
+    background-color: rgba(0,0,0,0);
+    overflow: hidden;
+}
+
+.container {
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.boxteams {
+    font-weight: 600;
+}
+
+.boxteams::before {
+    width: 20px;
+    height: 100%;
+    content: ' ';
+    margin-right: 5px;
+}
+
+.boxhometeam::before {
+    background-color: aquamarine;
+}
+
+.boxawayteam::before {
+    background-color: purple;
+}
